@@ -1,6 +1,6 @@
 import React from 'react'
-import "./Hero.css";
 import Products from '../Products/Products';
+import "./Hero.css";
 
 import heroImage from "../../assets/hero-image.jpg";
 
