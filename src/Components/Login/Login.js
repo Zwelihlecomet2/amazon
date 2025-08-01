@@ -17,11 +17,6 @@ const Login = () => {
     setIsLoggedIn(true);
     localStorage.setItem("isLoggedIn", true);
   }
-  
-  const SignOut = (event) =>{
-    setIsLoggedIn(false);
-    localStorage.setItem("isLoggedIn", false);
-  }
 
   useEffect(() =>{
     const userLog = localStorage.getItem("isLoggedIn");
@@ -29,6 +24,11 @@ const Login = () => {
       setIsLoggedIn(true);
     }
   }, []);
+  
+  const SignOut = (event) =>{
+    setIsLoggedIn(false);
+    localStorage.setItem("isLoggedIn", false);
+  }
   
   return (
     <div className='login'>
