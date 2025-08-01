@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import "./Login.css";
 
@@ -8,14 +8,33 @@ const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const signIn = (event) =>{
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+    setIsLoggedIn(true);
+    localStorage.setItem("isLoggedIn", true);
   }
+  
+  const SignOut = (event) =>{
+    setIsLoggedIn(false);
+    localStorage.setItem("isLoggedIn", false);
+  }
+
+  useEffect(() =>{
+    const userLog = localStorage.getItem("isLoggedIn");
+    if(userLog){
+      setIsLoggedIn(true);
+    }
+  }, []);
   
   return (
     <div className='login'>
+      {
+        (isLoggedIn) && <p onClick={SignOut}>You are Logged In <button>Sign Out</button></p>
+      }
       <Link to='/'>
         <img src={loginLogo} alt='amazon-logo' className='login-logo'/>
       </Link>
