@@ -1,8 +1,9 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useContext, useEffect, useReducer, useState } from 'react'
 import { Link } from 'react-router-dom'
 import "./Login.css";
 
 import loginLogo from "../../assets/Amazon-Logo.png";
+import AuthContext from '../../ContextAPI/authContext';
 
 const reducer = (state, action) =>{
   if(action.type === "EMAIL_INPUT"){
@@ -16,17 +17,24 @@ const reducer = (state, action) =>{
   return {emailValue: "", passwordValue: ""}
 }
 const Login = () => {
-  const [password, setPassword] = useState("");
+  const ctx = useContext(AuthContext);
+
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [state, dispatch] = useReducer(reducer, {emailValue: "", passwordValue: ""});
+  const {emailValue, passwordValue} = state;
 
-  const signIn = (event) =>{
-    event.preventDefault();
-    console.log(formIsValid);
-    console.log("Entered Email:", state.emailValue);
-    console.log("Entered Password:", state.passwordValue);
-  }
+  useEffect(() =>{
+    const identifier = setTimeout(() => {
+      console.log("Checking Form Validity");
+      setFormIsValid(emailValue.includes("@") && passwordValue.trim().length > 6);
+    }, 500);
+
+    return () =>{
+      console.log("CleanUp Here");
+      clearTimeout(identifier);
+    }
+  }, [emailValue, passwordValue]);
 
   const emailHandler = (event) =>{
     dispatch({type: "EMAIL_INPUT", payload: event.target.value});
@@ -34,6 +42,11 @@ const Login = () => {
 
   const passwordHandler = (event) =>{
     dispatch({type: "PASSWORD_INPUT", payload: event.target.value});
+  } 
+
+  const signIn = (event) =>{
+    event.preventDefault();
+    ctx.onLogin(emailValue, passwordValue);
   }
   
   return (

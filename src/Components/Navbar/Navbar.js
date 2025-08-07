@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext} from 'react'
 import "./Navbar.css";
 
 import amazonLogo from '../../assets/second-logo.png'
@@ -6,8 +6,12 @@ import amazonLogo from '../../assets/second-logo.png'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { Link } from 'react-router-dom'
+import AuthContext from '../../ContextAPI/authContext';
 
 const Navbar = () => {
+
+const ctx = useContext(AuthContext);
+
   return (
     <nav className='navbar'>
         <div className='logo'>
@@ -20,12 +24,23 @@ const Navbar = () => {
             <SearchIcon className='search-icon'/>
         </div>
         <div className='nav-options'>
-            <Link to="/login">
+            {
+             ctx.isLoggedIn ? (
+            <Link to="/">
+                <div className='options' onClick={ctx.onLogOut}>
+                    <span className='optionOne'>Hello User</span>
+                    <span className='optionTwo'>Sign Out</span>
+                </div>
+            </Link>
+            ):(
+                <Link to="/login">
                 <div className='options'>
                     <span className='optionOne'>Hello Guest</span>
                     <span className='optionTwo'>Sign In</span>
                 </div>
             </Link>
+            )
+        }
             <div className='options'>
                 <span className='optionOne'>Returns</span>
                 <span className='optionTwo'>& order</span>

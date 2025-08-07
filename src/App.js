@@ -11,15 +11,15 @@ import NotFound from './Components/NotFound/NotFound'
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
+    <>
+      <Navbar/>
       <main>
         <Switch>
           <Route path="/" exact>
             <Redirect to="/home" />
           </Route>
           <Route path="/login">
-            <Login />
+            <Login/>
           </Route>
           <Route path="/home">
             <Hero />
@@ -38,7 +38,7 @@ const App = () => {
             <ProductDetails />
           </Route> */}
       </main>
-    </div>
+    </>
   )
 }
 
