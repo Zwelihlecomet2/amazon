@@ -7,10 +7,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { Link } from 'react-router-dom'
 import AuthContext from '../../ContextAPI/authContext';
+import shoppingContext from '../../ContextAPI/Shopping/ShoppingContext';
 
 const Navbar = () => {
 
 const ctx = useContext(AuthContext);
+const shoppingCtx = useContext(shoppingContext);
+const {basket} = shoppingCtx;
 
   return (
     <nav className='navbar'>
@@ -53,7 +56,7 @@ const ctx = useContext(AuthContext);
 
             <div className='navBasket'>
                 <ShoppingBasketIcon className='shoppingBasket'/>
-                <span className='optionTwo basket-count'>0</span>
+                <span className='optionTwo basket-count'>{basket?.length}</span>
             </div>
         </div>
     </nav>
