@@ -6,6 +6,7 @@ export const ShoppingState = (props) => {
   const initialState = { basket: [], user: null };
   const [state, dispatch] = useReducer(shoppingReducer, initialState);
 
+  //Selectors
   const getBasketTotal = (basket) => {
     basket?.reduce((amount, item) => {
       return item.price + amount;
@@ -19,6 +20,14 @@ export const ShoppingState = (props) => {
     });
   };
 
+  const setUser = (user) =>{
+    dispatch({
+      type: "SET_USER",
+      payload: user
+    })
+  }
+
+
   return (
     <ShoppingContext.Provider
       value={{
@@ -26,6 +35,7 @@ export const ShoppingState = (props) => {
         user: state.user,
         getBasketTotal,
         addToBasket,
+        setUser,
       }}
     >
       {props.children}

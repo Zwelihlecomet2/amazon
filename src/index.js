@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import AuthContext, { AuthContextProvider } from './ContextAPI/authContext';
+// import AuthContext, { AuthContextProvider } from './ContextAPI/authContext';
 import { ShoppingState } from './ContextAPI/Shopping/ShoppingState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <AuthContextProvider>
+    {/* <AuthContextProvider> */}
       <ShoppingState>
         <App />
       </ShoppingState>
-    </AuthContextProvider>
+    {/* </AuthContextProvider> */}
     </BrowserRouter>
   </React.StrictMode>
 );

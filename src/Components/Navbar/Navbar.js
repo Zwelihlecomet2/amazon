@@ -6,14 +6,21 @@ import amazonLogo from '../../assets/second-logo.png'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { Link } from 'react-router-dom'
-import AuthContext from '../../ContextAPI/authContext';
 import shoppingContext from '../../ContextAPI/Shopping/ShoppingContext';
+import { auth } from '../../Firebase/Firebase';
+
 
 const Navbar = () => {
 
-const ctx = useContext(AuthContext);
-const shoppingCtx = useContext(shoppingContext);
-const {basket} = shoppingCtx;
+    const shoppingCtx = useContext(shoppingContext);
+    const {basket, user} = shoppingCtx;
+
+    const handleAuthentication = () =>{
+        if(user){
+            auth.signOut();
+            console.log("Signed Out");
+        }
+    }
 
   return (
     <nav className='navbar'>
@@ -27,23 +34,12 @@ const {basket} = shoppingCtx;
             <SearchIcon className='search-icon'/>
         </div>
         <div className='nav-options'>
-            {
-             ctx.isLoggedIn ? (
-            <Link to="/">
-                <div className='options' onClick={ctx.onLogOut}>
-                    <span className='optionOne'>Hello User</span>
-                    <span className='optionTwo'>Sign Out</span>
+                <Link to={!user && '/login'}>
+                <div className='options' onClick={handleAuthentication}>
+                    <span className='optionOne'>Hello {!user? 'Guest' : user.email}</span>
+                    <span className='optionTwo'>{user? 'Sign Out' : 'Sign In'}</span>
                 </div>
             </Link>
-            ):(
-                <Link to="/login">
-                <div className='options'>
-                    <span className='optionOne'>Hello Guest</span>
-                    <span className='optionTwo'>Sign In</span>
-                </div>
-            </Link>
-            )
-        }
             <div className='options'>
                 <span className='optionOne'>Returns</span>
                 <span className='optionTwo'>& order</span>
