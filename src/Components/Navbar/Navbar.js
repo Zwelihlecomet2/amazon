@@ -50,10 +50,12 @@ const Navbar = () => {
                 <span className='optionTwo'>Prime</span>
             </div>
 
-            <div className='navBasket'>
-                <ShoppingBasketIcon className='shoppingBasket'/>
-                <span className='optionTwo basket-count'>{basket?.length}</span>
-            </div>
+            <Link to='checkout'>
+                <div className='navBasket'>
+                    <ShoppingBasketIcon className='shoppingBasket'/>
+                    <span className='optionTwo basket-count'>{basket?.length}</span>
+                </div>
+            </Link>
         </div>
     </nav>
   )

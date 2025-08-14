@@ -9,10 +9,10 @@ const NotFound = () => {
     <div className='not-found'>
         <Link to="/">
             <div>
-                <img src={notFoundText} alt='Page Not Found' className='top-image'/>
+                <img src={notFoundText} alt='Page Not Found' className='top-pic'/>
             </div>
             <div>
-                <img src={notFoundImage} alt='Not Found Image' className='bottom-image'/>
+                <img src={notFoundImage} alt='Not Found Page' className='bottom-pic'/>
             </div>
         </Link>
     </div>

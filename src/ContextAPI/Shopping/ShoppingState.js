@@ -20,6 +20,13 @@ export const ShoppingState = (props) => {
     });
   };
 
+  const removeFromBasket = (item) =>{
+    dispatch({
+      type: "REMOVE_FROM_BASKET",
+      payload: item
+    });
+  }
+
   const setUser = (user) =>{
     dispatch({
       type: "SET_USER",
@@ -36,6 +43,7 @@ export const ShoppingState = (props) => {
         getBasketTotal,
         addToBasket,
         setUser,
+        removeFromBasket,
       }}
     >
       {props.children}

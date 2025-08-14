@@ -10,11 +10,12 @@ const Product = (props) => {
     const {addToBasket} = shoppingCtx;
 
     const addToBasketHandler = () =>{
-      addToBasket({item: {id, image, title, rating, price}})
+      // addToBasket({item: {id, image, title, rating, price}})
+      addToBasket({id, image, title, rating, price})
     }
 
   return (
-    <div className='product'>
+    <div className='product' key={id}>
         <img src={image} alt='product-image' className='product-image'/>
         <div className='product-info'>
             <p>{title}</p>

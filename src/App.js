@@ -6,6 +6,8 @@ import Hero from './Components/Hero/Hero'
 import NotFound from './Components/NotFound/NotFound'
 import { auth } from './Firebase/Firebase'
 import shoppingContext from './ContextAPI/Shopping/ShoppingContext';
+// import CheckoutProduct from './Components/CheckoutProduct/CheckoutProduct'
+import Checkout from './Components/Checkout/Checkout'
 
 // import Home from './Components/Home/Home'
 // import Products from './Components/Products/Products'
@@ -44,6 +46,9 @@ const App = () => {
           </Route>
           <Route path="/home">
             <Hero />
+          </Route>
+          <Route path="/checkout">
+            <Checkout />
           </Route>
           <Route path="*">
             <NotFound />
