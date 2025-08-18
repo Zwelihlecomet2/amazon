@@ -8,6 +8,7 @@ import { auth } from './Firebase/Firebase'
 import shoppingContext from './ContextAPI/Shopping/ShoppingContext';
 // import CheckoutProduct from './Components/CheckoutProduct/CheckoutProduct'
 import Checkout from './Components/Checkout/Checkout'
+import Payment from './Components/Payment/Payment'
 
 // import Home from './Components/Home/Home'
 // import Products from './Components/Products/Products'
@@ -49,6 +50,9 @@ const App = () => {
           </Route>
           <Route path="/checkout">
             <Checkout />
+          </Route> 
+          <Route path='/payment'>
+            <Payment />
           </Route>
           <Route path="*">
             <NotFound />
