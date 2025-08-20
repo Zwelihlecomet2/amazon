@@ -1,19 +1,17 @@
 import React, { useContext, useEffect } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js"
 import Navbar from './Components/Navbar/Navbar'
 import Login from './Components/Login/Login'
 import Hero from './Components/Hero/Hero'
 import NotFound from './Components/NotFound/NotFound'
 import { auth } from './Firebase/Firebase'
 import shoppingContext from './ContextAPI/Shopping/ShoppingContext';
-// import CheckoutProduct from './Components/CheckoutProduct/CheckoutProduct'
 import Checkout from './Components/Checkout/Checkout'
 import Payment from './Components/Payment/Payment'
 
-// import Home from './Components/Home/Home'
-// import Products from './Components/Products/Products'
-// import Header from './Components/Heading/Header'
-// import ProductDetails from './Components/Products/ProductDetails'
+const promise = loadStripe("pk_test_51RxiUA2Om1YmuXswBslIEYG4vqi2krOSTV47skGQMeCGN4zqs6rdZOMKnvwJYrd1Y3hKzwcB6XXoKPsvuBq9AGiI000qFGa9Ex");
 
 const App = () => {
 
@@ -52,7 +50,9 @@ const App = () => {
             <Checkout />
           </Route> 
           <Route path='/payment'>
-            <Payment />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
           </Route>
           <Route path="*">
             <NotFound />
