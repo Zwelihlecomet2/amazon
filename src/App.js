@@ -10,6 +10,7 @@ import { auth } from './Firebase/Firebase'
 import shoppingContext from './ContextAPI/Shopping/ShoppingContext';
 import Checkout from './Components/Checkout/Checkout'
 import Payment from './Components/Payment/Payment'
+import Orders from './Components/Orders/Orders';
 
 const promise = loadStripe("pk_test_51RxiUA2Om1YmuXswBslIEYG4vqi2krOSTV47skGQMeCGN4zqs6rdZOMKnvwJYrd1Y3hKzwcB6XXoKPsvuBq9AGiI000qFGa9Ex");
 
@@ -53,6 +54,9 @@ const App = () => {
             <Elements stripe={promise}>
               <Payment />
             </Elements>
+          </Route>
+          <Route path='/orders'>
+            <Orders />
           </Route>
           <Route path="*">
             <NotFound />

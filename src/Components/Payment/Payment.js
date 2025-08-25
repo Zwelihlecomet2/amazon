@@ -6,10 +6,11 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import shoppingContext from "../../ContextAPI/Shopping/ShoppingContext";
 import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";
+import { db } from "../../Firebase/Firebase";
 
 const Payment = () => {
   const shoppingCtx = useContext(shoppingContext);
-  const { basket, user, getBasketTotal } = shoppingCtx;
+  const { basket, user, getBasketTotal, emptyBasket } = shoppingCtx;
 
   const stripe = useStripe();
   const elements = useElements();
@@ -36,12 +37,14 @@ const Payment = () => {
       //   console.error("Payment Error:", error);
       //   // Handle error appropriately
       // }
-    const response = await axios({
-      method: "post",
-      url: `/payment/create?total=${basket.reduce((acc, item) => acc + item.price, 0) * 100}`
-    });
-    setClientSecret(response.data.clientSecret);
-  };
+      const response = await axios({
+        method: "post",
+        url: `/payment/create?total=${
+          basket.reduce((acc, item) => acc + item.price, 0) * 100
+        }`,
+      });
+      setClientSecret(response.data.clientSecret);
+    };
     getClientSecret();
   }, [basket]);
 
@@ -50,20 +53,34 @@ const Payment = () => {
     event.preventDefault();
     setProcessing(true);
 
-    const payload = stripe.confirmCardPayment(clientSecret, {
-      payment_method: { card: elements.getElement(CardElement) },
-    }).then(({paymentIntent}) =>{
-      //Payment intent = payment Confirmation
-      setSucceeded(true);
-      setError(null);
-      setProcessing(false);
-      history.push('/orders')
-    });
+    const payload = stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: { card: elements.getElement(CardElement) },
+      })
+      .then(({ paymentIntent }) => {
+        //Payment intent = payment Confirmation
+        db.collection("user")
+          .doc(user?.uid)
+          .collection("orders")
+          .doc(paymentIntent.id)
+          .set({
+            basket: basket,
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
+          });
+        setSucceeded(true);
+        setError(null);
+        setProcessing(false);
+        //Empty Basket
+        emptyBasket();
+        //Redirect the user to orders page
+        history.push("/orders");
+      });
   };
 
   const handleChange = (event) => {
     setDisabled(event.empty);
-    setError(event.error ? "event.error.message": "");
+    setError(event.error ? "event.error.message" : "");
   };
 
   return (
