@@ -1,76 +1,213 @@
-.navbar{
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #131921;
+.navbar {
+    background-color: #ffffff;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid #f0f0f0;
 }
 
-.logo{
-    width: 100px;
-    object-fit: contain;
-    margin: 0 20px;
-    /* margin-top: 18px; */
-}
-
-.logo img{
-    width: 100%;
-    color: white;
-}
-
-.search-area{
+.navbar-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 80px;
     display: flex;
-    flex: 1;
     align-items: center;
-    border-radius: 24px;
-}
-
-.search-input{
-    height: 12px;
-    padding: 10px;
-    border: none;
-    width: 100%;
-}
-
-.search-icon{
-    padding: 5px;
-    height: 22px !important;
-    background-color: #cd9042;
-}
-
-.nav-options{
-    display: flex;
     justify-content: space-between;
+    gap: 48px;
 }
 
-.nav-options a{
+.logo {
+    flex-shrink: 0;
+}
+
+.logo a {
     text-decoration: none;
 }
 
-.options{
-    display: flex;
-    flex-direction: column;
-    margin: 0 10px;
-    color: white;
-}
-
-.optionOne{
-    font-size: 10px;
-}
-
-.optionTwo{
-    font-size: 13px;
+.logo-text {
+    font-size: 28px;
     font-weight: 800;
+    color: #2c5f2d;
+    letter-spacing: -0.5px;
+    transition: color 0.3s ease;
 }
 
-.navBasket{
+.logo-text:hover {
+    color: #1e4620;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #2c5f2d;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #2c5f2d;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-actions {
     display: flex;
     align-items: center;
+    gap: 24px;
+    flex-shrink: 0;
+}
+
+.search-area {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 24px;
+    padding: 8px 16px;
+    width: 280px;
+    transition: all 0.3s ease;
+}
+
+.search-area:focus-within {
+    background-color: #fff;
+    box-shadow: 0 0 0 2px #2c5f2d;
+}
+
+.search-input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-icon {
+    color: #666;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.search-area:focus-within .search-icon {
+    color: #2c5f2d;
+}
+
+.nav-icon-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    color: #1a1a1a;
+    transition: color 0.3s ease;
+    padding: 8px;
+}
+
+.nav-icon:hover {
+    color: #2c5f2d;
+}
+
+.nav-icon svg {
+    font-size: 24px;
+}
+
+.nav-icon-label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.nav-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: #2c5f2d;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+.cart-icon {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background-color: #2c5f2d;
     color: white;
 }
 
-.basket-count{
-    margin: 0 10px;
+.cart-icon:hover {
+    background-color: #1e4620;
+    color: white;
+}
+
+.cart-icon .nav-badge {
+    background-color: white;
+    color: #2c5f2d;
+}
+
+@media (max-width: 1024px) {
+    .nav-links {
+        display: none;
+    }
+
+    .search-area {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-container {
+        padding: 0 16px;
+        height: 70px;
+        gap: 16px;
+    }
+
+    .logo-text {
+        font-size: 24px;
+    }
+
+    .search-area {
+        display: none;
+    }
+
+    .nav-actions {
+        gap: 16px;
+    }
+
+    .nav-icon-label {
+        display: none;
+    }
 }

@@ -11,56 +11,62 @@ import sixthDress from "../../assets/sixth-dress.jpg";
 
 const Products = () => {
   return (
-    <>
-    <div className='products'>
-        <Product 
-        id = "1"
-        image={firstDress}
-        title="SOLY HUX Women's V Neck Halter Tops Open Back Y2k Ruched Floral Metal Summer Going Out Cami Tops"
-        rating={4}
-        price={59.99}
+    <div className='products-container'>
+      <div className='products-header'>
+        <h2>Featured Furniture</h2>
+        <p>Transform your space with our curated collection</p>
+      </div>
+      <div className='products-grid'>
+        <Product
+          id="1"
+          image={firstDress}
+          title="Modern Velvet Accent Chair"
+          description="Elegant velvet upholstery with solid wood legs"
+          rating={4.8}
+          price={899.99}
         />
-        <Product 
-        id="2"
-        image={secondDress}
-        title="Slip Dress for Women Adjustable Spaghetti Straps Under Dresses Basic Full Slips Cami Long Slip Dress Nightgown"
-        rating={4.4}
-        price={400.00}
+        <Product
+          id="2"
+          image={secondDress}
+          title="Scandinavian Oak Dining Table"
+          description="Solid oak construction with minimalist design"
+          rating={4.9}
+          price={1299.00}
         />
+        <Product
+          id="3"
+          image={thirdDress}
+          title="Mid-Century Modern Sofa"
+          description="Premium fabric with tufted cushions and tapered legs"
+          rating={4.7}
+          price={1899.99}
+        />
+        <Product
+          id="4"
+          image={fourthDress}
+          title="Industrial Bookshelf Unit"
+          description="Metal frame with reclaimed wood shelves"
+          rating={4.6}
+          price={749.00}
+        />
+        <Product
+          id="5"
+          image={fifthDress}
+          title="Contemporary Coffee Table"
+          description="Tempered glass top with marble base"
+          rating={4.8}
+          price={599.00}
+        />
+        <Product
+          id="6"
+          image={sixthDress}
+          title="Luxury King Bed Frame"
+          description="Upholstered headboard with storage drawers"
+          rating={4.9}
+          price={1499.00}
+        />
+      </div>
     </div>
-    <div className='products'>
-        <Product 
-        id="3"
-        image={thirdDress}
-        title="WIHOLL Dresses for Women 2025 Casual Summer V Neck Wedding Guest Dress Short Sleeve Fashion Beach Vacation Clothes"
-        rating={4.3}
-        price={108.4}
-        />
-        <Product 
-        id="4"
-        image={fourthDress}
-        title="BTFBM Women Summer Bohemian Floral Casual Wrap V Neck Ruffle Cap Sleeveless Belt A-Line Pleated Hem Midi Sun Dress White"
-        rating={7}
-        price={350}
-        />
-        <Product 
-        id="5"
-        image={fifthDress}
-        title="2025 Loose V Neck Ruffle Sleeve Tiered Flowy Casual A Line Mini Beach Dress with Pockets"
-        rating={4.1}
-        price={250.00}
-        />
-    </div>
-    <div className='products'>
-        <Product 
-        id="6"
-        image={sixthDress}
-        title="Sexy Elegant Lace Beach Cover Up for Women, Bathing Suit Cover Up, V-Neck Swimsuit Coverup for Poolside, Seaside and Party"
-        rating={10}
-        price={600.30}
-        />
-    </div>
-    </>
   )
 }
 
